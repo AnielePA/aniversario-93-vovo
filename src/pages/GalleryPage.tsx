@@ -554,10 +554,10 @@ const VIDEOS: Video[] = [
   { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206628/video4_awbxkw.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/v1781206916/thumb4_kejj9c.jpg", alt: "Vídeo 3" },
   { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206584/video5_wdfcz6.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/v1781206917/thumb5_myeahx.jpg", alt: "Vídeo 4" },
   { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206585/video6_wyjckf.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/v1781206919/thumb6_pthx9s.jpg", alt: "Vídeo 5" },
-  { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206601/video7_lyg2qi.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/v1781206917/thumb5_myeahx.jpg", alt: "Vídeo 6" },
-  { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206589/video8_yx9zwm.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/v1781206916/thumb4_kejj9c.jpg", alt: "Vídeo 7" },
-  { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206643/video9_fveeyy.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/v1781206915/thumb3_oxtq2g.jpg", alt: "Vídeo 8" },
-  { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206593/video10_pcoxgv.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/v1781206912/thumb1_fdzw26.jpg", alt: "Vídeo 9" },
+  { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206601/video7_lyg2qi.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/q_auto/f_auto/v1781206920/thumb7_hu8a5s.jpg", alt: "Vídeo 6" },
+  { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206589/video8_yx9zwm.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/q_auto/f_auto/v1781206922/thumb8_yvdwqb.jpg", alt: "Vídeo 7" },
+  { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206643/video9_fveeyy.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/q_auto/f_auto/v1781206924/thumb9_j3nlhq.jpg", alt: "Vídeo 8" },
+  { src: "https://res.cloudinary.com/diclhm335/video/upload/q_auto/f_auto/v1781206593/video10_pcoxgv.mp4", thumbnail: "https://res.cloudinary.com/diclhm335/image/upload/q_auto/f_auto/v1781206925/thumb10_kpra01.jpg", alt: "Vídeo 9" },
 ];
 
 export default function GalleryPage(): React.ReactElement {
