@@ -1,0 +1,268 @@
+/* ══════════════════════════════════════
+   SLIDESHOW — FULLSCREEN
+══════════════════════════════════════ */
+
+.ss-root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Garante fullscreen em webkit */
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ── SLIDES ───────────────────────── */
+.ss-slide {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.ss-slide--next {
+  z-index: 0;
+  opacity: 0;
+}
+
+/* Foto saindo */
+.ss-slide--fading-out {
+  z-index: 2;
+  animation: ss-fade-out 1.2s ease forwards;
+}
+
+/* Próxima foto entrando */
+.ss-slide--fading-in {
+  z-index: 1;
+  opacity: 1;
+}
+
+@keyframes ss-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── IMAGEM + KEN BURNS ───────────── */
+.ss-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* foto inteira, sem corte em nenhuma tela */
+  object-position: center;
+  animation-duration: 9200ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  user-select: none;
+  -webkit-user-drag: none;
+  z-index: 2;
+}
+
+/* ── FUNDO BORRADO (blurred backdrop) ── */
+/* Mesma foto esticada em cover + blur, serve de fundo para fotos verticais */
+.ss-img-blur {
+  position: absolute;
+  inset: -5%;          /* extrapola um pouco pra esconder borda do blur */
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(28px) brightness(0.45) saturate(1.2);
+  transform: scale(1.05);
+  z-index: 1;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* 5 direções de Ken Burns — cada foto terá uma diferente */
+.ss-img--kb-top-left {
+  transform-origin: top left;
+  animation-name: kb-top-left;
+}
+.ss-img--kb-top-right {
+  transform-origin: top right;
+  animation-name: kb-top-right;
+}
+.ss-img--kb-bottom-left {
+  transform-origin: bottom left;
+  animation-name: kb-bottom-left;
+}
+.ss-img--kb-bottom-right {
+  transform-origin: bottom right;
+  animation-name: kb-bottom-right;
+}
+.ss-img--kb-center {
+  transform-origin: center center;
+  animation-name: kb-center;
+}
+
+@keyframes kb-top-left {
+  from { transform: scale(1.0) translate(0, 0); }
+  to   { transform: scale(1.12) translate(-1.5%, -1.5%); }
+}
+@keyframes kb-top-right {
+  from { transform: scale(1.0) translate(0, 0); }
+  to   { transform: scale(1.12) translate(1.5%, -1.5%); }
+}
+@keyframes kb-bottom-left {
+  from { transform: scale(1.12) translate(-1%, -1%); }
+  to   { transform: scale(1.0) translate(0, 0); }
+}
+@keyframes kb-bottom-right {
+  from { transform: scale(1.12) translate(1%, -1%); }
+  to   { transform: scale(1.0) translate(0, 0); }
+}
+@keyframes kb-center {
+  from { transform: scale(1.0); }
+  to   { transform: scale(1.1); }
+}
+
+/* ── OVERLAY ──────────────────────── */
+.ss-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  /* Vinheta nas bordas para dar sofisticação */
+  background: radial-gradient(
+    ellipse 90% 90% at 50% 50%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── BARRA DE PROGRESSO ───────────── */
+.ss-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 10;
+}
+.ss-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #F2D9A0, #F2E5C6);
+  transition: width 0.1s linear;
+  box-shadow: 0 0 6px rgba(242, 217, 160, 0.6);
+}
+
+/* ── CONTADOR ─────────────────────── */
+.ss-counter {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-family: 'Jost', 'Segoe UI', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: rgba(242, 229, 198, 0.7);
+}
+.ss-counter span {
+  opacity: 0.4;
+  margin: 0 4px;
+}
+
+/* ── CONTROLES ────────────────────── */
+.ss-controls {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ss-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 229, 198, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(242, 229, 198, 0.8);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.ss-btn:hover {
+  border-color: rgba(242, 229, 198, 0.6);
+  background: rgba(117, 22, 45, 0.4);
+  color: #F2E5C6;
+  transform: scale(1.08);
+}
+.ss-btn svg { width: 18px; height: 18px; }
+
+.ss-btn--main {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(242, 229, 198, 0.4);
+  background: rgba(117, 22, 45, 0.3);
+}
+.ss-btn--main svg { width: 20px; height: 20px; }
+.ss-btn--main:hover {
+  background: rgba(117, 22, 45, 0.65);
+  border-color: rgba(242, 217, 160, 0.8);
+  transform: scale(1.1);
+}
+
+/* ── FECHAR ───────────────────────── */
+.ss-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 229, 198, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(242, 229, 198, 0.7);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.ss-close:hover {
+  background: rgba(117, 22, 45, 0.5);
+  border-color: rgba(242, 229, 198, 0.5);
+  color: #F2E5C6;
+}
+.ss-close svg { width: 16px; height: 16px; }
+
+/* ── WATERMARK ────────────────────── */
+.ss-watermark {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: rgba(242, 229, 198, 0.3);
+  pointer-events: none;
+}
+
+/* ── MOBILE ───────────────────────── */
+@media (max-width: 480px) {
+  .ss-controls { bottom: 36px; gap: 12px; }
+  .ss-btn       { width: 40px; height: 40px; }
+  .ss-btn--main { width: 52px; height: 52px; }
+  .ss-watermark { font-size: 11px; bottom: 14px; right: 14px; }
+}
