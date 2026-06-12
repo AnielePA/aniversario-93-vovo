@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Masonry from "react-masonry-css";
 import SlideShow from "../components/SlideShow"; 
 import "./galleryPage.css";
-import musicaGerais from "../assets/music/musica-de-fundo.mp3";
+import musicaGerais from "../assets/music/musica-gerais.mp3";
 import musica90anos from "../assets/music/musica90.mp3";
 import musica89anos from "../assets/music/musica89.mp3";
 import musica80anos from "../assets/music/musica80.mp3";
